@@ -10,6 +10,8 @@ import { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import {userFrame, userThree } from '@react-three/fiber'
 
+import islandScene from '../assets/3d/island.glb'
+
 const Island = (props) => {
   const { nodes, materials } = useGLTF('/island.glb')
   return (
