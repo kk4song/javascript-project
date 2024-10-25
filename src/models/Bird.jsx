@@ -9,9 +9,10 @@ const Bird = () => {
   const {actions} = useAnimations(animations, birdRef);
 
   useEffect(()=> {
-    actions['Take 001'].play();
+    actions['Take 001'].play(); // Animation of bird
   }, [])
 
+  // Circular animation of bird
   useFrame(({clock, camera}) => {
     // Update the Y position to simulate bird-like motion using a sine wave
     birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
