@@ -19,7 +19,7 @@ const renderContent = {
         py-4 px-8 text-white mx-5">
         Hi! My name is <span className = "font-semibold">Kelly</span> 🍿
         <br/>
-        A Grade 12 Student from EOM SS
+        A Grade 12 Student
         </h1>
     ),
     2: (
