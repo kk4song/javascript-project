@@ -30,7 +30,8 @@ const Fox = ({ currentAnimation, ...props }) => {
   }, [actions, currentAnimation]);
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null} onClick={props.onClick}>
+
       <group name='Sketchfab_Scene'>
         <primitive object={nodes.GLTF_created_0_rootJoint} />
         <skinnedMesh

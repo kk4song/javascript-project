@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.image-container {
+  width: 100%; /* Set the width of the container */
+  height: 100%; /* Set the height of the container */
+  overflow: hidden; /* Hide any overflow */
+  position: relative; /* Positioning context */
+}
+
+.image {
+  width: 100%; /* Make the image fill the container's width */
+  height: 100%; /* Make the image fill the container's height */
+  object-fit: cover; /* Cover the container while preserving aspect ratio */
+  object-position: center; /* Center the image */
+}

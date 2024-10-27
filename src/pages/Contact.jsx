@@ -9,6 +9,8 @@ import Loader from '../components/Loader'
 import useAlert from '../hooks/useAlert';
 import Alert from '../components/Alert';
 
+import foxAudio from '../assets/foxAudio.mp3'
+
 const Contact = () => {
   const formRef = useRef(null);
   const [form, setForm] = useState({ name: "", email: "", message: ""})
@@ -16,7 +18,11 @@ const Contact = () => {
   const [currentAnimation, setCurrentAnimation] = useState('idle')
   const {alert, showAlert, hideAlert} = useAlert();
 
+  const foxRef = useRef(null);
+  const foxAudioRef = useRef(new Audio(foxAudio)); // Initialize the audio
 
+  // Add state to show a message when the fox is clicked
+  const [foxMessage, setFoxMessage] = useState("");
 
   const handleChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value})
@@ -41,28 +47,38 @@ const Contact = () => {
     ).then(() => {
       setIsLoading(false);
       showAlert({show: true, text: 'Message sent successfully!', type: 'success'});
-      // TODO: Hide an alert
 
       setTimeout(() => {
-        hideAlert();
+        hideAlert(false);
         setCurrentAnimation('idle')
         setForm({name: '', email: '', message: ''});
       }, [3000])
 
     }).catch((error) => {
       setIsLoading(false);
-      setCurrentAnimation('idle')
       console.log(error);
+      setCurrentAnimation('idle')
       showAlert({show: true, text: 'I didnt receive your message',
         type: 'danger'
       })
     })
   }
+  
 
   const handleFocus = () => setCurrentAnimation('walk');
-  const handleBlur = () => setCurrentAnimations('idle');
+  const handleBlur = () => setCurrentAnimation('idle');
+
+  // Function to handle fox click and play audio
+  const handleFoxClick = () => {
+    foxAudioRef.current.play(); // Play the fox sound
+    setFoxMessage("Hello there! How can I help you?"); // Set the message
+
+    // Clear the message after 3 seconds
+    setTimeout(() => setFoxMessage(""), 3000);
+  };
+  
   return (
-    <section className = "relative flex lg:flex-row flex-col max-container">
+    <section className = "relative flex lg:flex-row flex-col max-container h-100vh">
       {alert.show && <Alert {...alert} />}
 
       <div className="flex-1 min-w-[50%] flex flex-col">
@@ -79,7 +95,7 @@ const Contact = () => {
             type="text"
             name="name"
             className="input"
-            placeholder="Mr. Lauder"
+            placeholder="Your Name"
             required
             value={form.name}
             onChange={handleChange}
@@ -93,7 +109,7 @@ const Contact = () => {
             type="email"
             name="email"
             className="input"
-            placeholder="mrlauder@ocdsb.ca"
+            placeholder="youremail@gmail.com"
             required
             value={form.email}
             onChange={handleChange}
@@ -147,6 +163,7 @@ const Contact = () => {
           position={[0.5, 0.35, 0]}
           rotation={[12.629, -0.6, 0]}
           scale={[0.5, 0.5, 0.5]}
+          onClick={handleFoxClick}  // Pass down the click handler
           />
 
         </Suspense>

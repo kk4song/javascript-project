@@ -1,4 +1,4 @@
-import { useState, Suspense } from 'react'
+import { useState, Suspense, useEffect, useRef} from 'react'
 import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
 import Sky from '../models/Sky'
@@ -7,10 +7,6 @@ import Plane from '../models/Plane'
 import HomeInfo from '../components/HomeInfo'
 
 import Island from '../models/Island'
-
-        {/*<div className = "absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-            POPUP
-        </div> */}
 
 const Home = () => {
     const [isRotating, setIsRotating] = useState(false);
