@@ -12,7 +12,7 @@ const Bird = () => {
     actions['Take 001'].play(); // Animation of bird
   }, [])
 
-  // Circular animation of bird
+  // The following code was taken from ChatGPT
   useFrame(({clock, camera}) => {
     // Update the Y position to simulate bird-like motion using a sine wave
     birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
